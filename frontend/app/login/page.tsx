@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { signIn } from 'next-auth/react';
-import { Mail, ShieldCheck, Zap, Sparkles, LogIn } from 'lucide-react';
+import { Mail, ShieldCheck, Zap, Sparkles, LogIn, Info } from 'lucide-react';
 import { Button } from '@/components/UI/Button';
 
 export default function LoginPage() {
@@ -17,8 +17,8 @@ export default function LoginPage() {
   const handleDevSignIn = () => {
     setIsLoadingDev(true);
     signIn('credentials', {
-      email: 'alex@reachinbox.ai',
-      name: 'Alex Rivera (ReachInbox)',
+      email: 'evaluator@reachinbox.ai',
+      name: 'ReachInbox Evaluator',
       callbackUrl: '/dashboard',
     });
   };
@@ -38,6 +38,17 @@ export default function LoginPage() {
           <p className="text-xs text-slate-400 mt-1.5">
             Production-grade Cold Email Job Scheduler & Dashboard
           </p>
+        </div>
+
+        {/* Evaluator Recommendation Note */}
+        <div className="mb-6 p-3.5 rounded-2xl bg-blue-500/10 border border-blue-500/30 text-blue-300 text-xs flex items-start space-x-2.5 shadow-sm">
+          <Info className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
+          <div>
+            <span className="font-bold text-white block mb-0.5">Recommended for Evaluators / Recruiters:</span>
+            <span>
+              Use <strong>"1-Click Dashboard Access"</strong> below for instant full-feature evaluation with zero login prompts. *(Google OAuth in unverified testing mode restricts non-test emails)*.
+            </span>
+          </div>
         </div>
 
         {/* Feature Highlights */}
@@ -65,13 +76,13 @@ export default function LoginPage() {
             className="w-full justify-center py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold shadow-lg shadow-blue-500/25"
             icon={<LogIn className="w-4 h-4 mr-2" />}
           >
-            1-Click Dashboard Access
+            1-Click Dashboard Access (Recommended)
           </Button>
 
           <div className="relative my-3 flex items-center justify-center">
             <div className="border-t border-slate-800 w-full" />
             <span className="bg-slate-950 px-2.5 text-[10px] uppercase tracking-wider text-slate-500 font-semibold absolute">
-              or sign in via google
+              or Google OAuth 2.0
             </span>
           </div>
 
@@ -101,7 +112,7 @@ export default function LoginPage() {
               </svg>
             }
           >
-            Sign in with Google OAuth 2.0
+            Sign in with Google OAuth
           </Button>
         </div>
       </div>

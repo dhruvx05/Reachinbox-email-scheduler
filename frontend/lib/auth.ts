@@ -36,6 +36,12 @@ export const authOptions: NextAuthOptions = {
     strategy: 'jwt',
   },
   callbacks: {
+    async redirect({ url, baseUrl }) {
+      // Ensure clean redirect to /dashboard on Vercel or localhost
+      if (url.includes('/dashboard')) return url;
+      if (url.startsWith('/')) return `${baseUrl}${url}`;
+      return `${baseUrl}/dashboard`;
+    },
     async session({ session, token }) {
       if (session.user && token.sub) {
         (session.user as any).id = token.sub;

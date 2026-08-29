@@ -8,7 +8,7 @@ A production-grade email job scheduler service and live dashboard, built to emul
 
 The complete 5-minute interactive user flow recorded live inside Chrome (dashboard scheduling, delayed job execution, live BullMQ board, Ethereal preview links, and Elasticsearch search) is included in the repository:
 
-![ReachInbox Demo Video](demo_video.webp)
+![ReachInbox Demo Video](demo_video.gif)
 
 ---
 
@@ -25,7 +25,7 @@ The complete 5-minute interactive user flow recorded live inside Chrome (dashboa
 ```text
 /
 ├── docker-compose.yml             # Postgres, Redis & Elasticsearch multi-container setup
-├── demo_video.webp                # Live recorded demo video of scheduler & dashboard
+├── demo_video.gif                 # Live recorded demo video of scheduler & dashboard
 ├── README.md                      # Complete architecture guide & setup instructions
 ├── backend/
 │   ├── .env.example               # Complete list of backend environment variables

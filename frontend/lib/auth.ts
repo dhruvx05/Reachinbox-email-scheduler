@@ -2,20 +2,11 @@ import { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-const providers: any[] = [];
-
-// Always include Google Provider if credentials are set
-if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
-  providers.push(
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    })
-  );
-}
-
-// Demo Credentials Provider (always active for seamless 1-click login testing)
-providers.push(
+const providers: any[] = [
+  GoogleProvider({
+    clientId: process.env.GOOGLE_CLIENT_ID || '785960651495-k2knh9d1glt7ka7fv8g2pbgpnujk05sg.apps.googleusercontent.com',
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET || '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',
+  }),
   CredentialsProvider({
     name: 'Direct Access',
     credentials: {
@@ -33,8 +24,8 @@ providers.push(
       }
       return null;
     },
-  })
-);
+  }),
+];
 
 export const authOptions: NextAuthOptions = {
   providers,

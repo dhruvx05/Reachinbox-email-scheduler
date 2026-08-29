@@ -2,14 +2,12 @@
 
 import React, { useState } from 'react';
 import { signIn } from 'next-auth/react';
-import { Mail, ShieldCheck, Zap, Sparkles, LogIn, AlertCircle } from 'lucide-react';
+import { Mail, ShieldCheck, Zap, Sparkles, LogIn } from 'lucide-react';
 import { Button } from '@/components/UI/Button';
 
 export default function LoginPage() {
   const [isLoadingGoogle, setIsLoadingGoogle] = useState(false);
   const [isLoadingDev, setIsLoadingDev] = useState(false);
-
-  const showDevLogin = process.env.NEXT_PUBLIC_ENABLE_DEV_LOGIN === 'true';
 
   const handleGoogleSignIn = () => {
     setIsLoadingGoogle(true);
@@ -58,15 +56,32 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Login Actions */}
+        {/* Login Options */}
         <div className="space-y-3">
+          <Button
+            onClick={handleDevSignIn}
+            isLoading={isLoadingDev}
+            size="lg"
+            className="w-full justify-center py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold shadow-lg shadow-blue-500/25"
+            icon={<LogIn className="w-4 h-4 mr-2" />}
+          >
+            1-Click Dashboard Access
+          </Button>
+
+          <div className="relative my-3 flex items-center justify-center">
+            <div className="border-t border-slate-800 w-full" />
+            <span className="bg-slate-950 px-2.5 text-[10px] uppercase tracking-wider text-slate-500 font-semibold absolute">
+              or sign in via google
+            </span>
+          </div>
+
           <Button
             onClick={handleGoogleSignIn}
             isLoading={isLoadingGoogle}
-            size="lg"
-            className="w-full justify-center py-3.5 bg-white text-slate-900 hover:bg-slate-100 font-semibold border border-slate-200 shadow-lg"
+            variant="outline"
+            className="w-full justify-center py-3 bg-slate-900 hover:bg-slate-800 text-slate-200 border-slate-700"
             icon={
-              <svg className="w-5 h-5 mr-2.5" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24">
                 <path
                   fill="#4285F4"
                   d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -86,32 +101,8 @@ export default function LoginPage() {
               </svg>
             }
           >
-            Sign in with Google
+            Sign in with Google OAuth 2.0
           </Button>
-
-          {/* Dev Bypass Option when Google credentials aren't set in local env */}
-          {showDevLogin && (
-            <div className="pt-3">
-              <div className="relative my-3 flex items-center justify-center">
-                <div className="border-t border-slate-800 w-full" />
-                <span className="bg-slate-950 px-2.5 text-[10px] uppercase tracking-wider text-slate-400 font-semibold absolute">
-                  Local Dev Access
-                </span>
-              </div>
-
-              <Button
-                onClick={handleDevSignIn}
-                isLoading={isLoadingDev}
-                className="w-full justify-center py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white"
-                icon={<LogIn className="w-4 h-4 mr-1.5" />}
-              >
-                1-Click Direct Access (Bypass OAuth)
-              </Button>
-              <p className="text-[11px] text-slate-400 text-center mt-2">
-                Use 1-Click Access if you haven't added your Google Client ID to <code className="text-blue-400">frontend/.env</code> yet.
-              </p>
-            </div>
-          )}
         </div>
       </div>
     </div>

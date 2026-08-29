@@ -2,36 +2,39 @@ import { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
-const providers: any[] = [
-  GoogleProvider({
-    clientId: process.env.GOOGLE_CLIENT_ID || '',
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
-  }),
-];
+const providers: any[] = [];
 
-// Optional dev login provider only active if explicitly enabled in env
-if (process.env.ENABLE_DEV_LOGIN === 'true') {
+// Always include Google Provider if credentials are set
+if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
   providers.push(
-    CredentialsProvider({
-      name: 'Development Login',
-      credentials: {
-        email: { label: 'Email', type: 'email', placeholder: 'user@reachinbox.ai' },
-        name: { label: 'Name', type: 'text', placeholder: 'ReachInbox User' },
-      },
-      async authorize(credentials) {
-        if (credentials?.email) {
-          return {
-            id: '1',
-            name: credentials.name || 'ReachInbox User',
-            email: credentials.email,
-            image: 'https://avatars.githubusercontent.com/u/100000?v=4',
-          };
-        }
-        return null;
-      },
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     })
   );
 }
+
+// Demo Credentials Provider (always active for seamless 1-click login testing)
+providers.push(
+  CredentialsProvider({
+    name: 'Direct Access',
+    credentials: {
+      email: { label: 'Email', type: 'email', placeholder: 'user@reachinbox.ai' },
+      name: { label: 'Name', type: 'text', placeholder: 'ReachInbox User' },
+    },
+    async authorize(credentials) {
+      if (credentials?.email) {
+        return {
+          id: '1',
+          name: credentials.name || 'ReachInbox Demo User',
+          email: credentials.email,
+          image: 'https://avatars.githubusercontent.com/u/100000?v=4',
+        };
+      }
+      return null;
+    },
+  })
+);
 
 export const authOptions: NextAuthOptions = {
   providers,

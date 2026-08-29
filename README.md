@@ -4,6 +4,14 @@ A production-grade email job scheduler service and live dashboard, built to emul
 
 ---
 
+## 🎬 Live Interactive Demo Video
+
+The complete 5-minute interactive user flow recorded live inside Chrome (dashboard scheduling, delayed job execution, live BullMQ board, Ethereal preview links, and Elasticsearch search) is included in the repository:
+
+![ReachInbox Demo Video](demo_video.webp)
+
+---
+
 ## 🛠️ Tech Stack
 
 - **Backend**: TypeScript, Express.js, BullMQ, Redis (ioredis), PostgreSQL, Prisma ORM, Elasticsearch, Nodemailer (Ethereal Email), `@bull-board/express`, Axios.
@@ -17,6 +25,7 @@ A production-grade email job scheduler service and live dashboard, built to emul
 ```text
 /
 ├── docker-compose.yml             # Postgres, Redis & Elasticsearch multi-container setup
+├── demo_video.webp                # Live recorded demo video of scheduler & dashboard
 ├── README.md                      # Complete architecture guide & setup instructions
 ├── backend/
 │   ├── .env.example               # Complete list of backend environment variables
@@ -78,14 +87,6 @@ cp backend/.env.example backend/.env
 
 # Frontend
 cp frontend/.env.example frontend/.env
-```
-
-Set your Google OAuth 2.0 Credentials in `frontend/.env`:
-```env
-GOOGLE_CLIENT_ID="your-google-client-id.apps.googleusercontent.com"
-GOOGLE_CLIENT_SECRET="your-google-client-secret"
-NEXTAUTH_SECRET="reachinbox_super_secret_jwt_key_2026"
-NEXTAUTH_URL="http://localhost:3000"
 ```
 
 ### 3. Setup & Start Backend Service

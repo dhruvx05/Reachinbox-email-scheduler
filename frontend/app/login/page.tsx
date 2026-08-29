@@ -17,8 +17,8 @@ export default function LoginPage() {
   const handleDevSignIn = () => {
     setIsLoadingDev(true);
     signIn('credentials', {
-      email: 'evaluator@reachinbox.ai',
-      name: 'ReachInbox Evaluator',
+      email: 'user@reachinbox.ai',
+      name: 'ReachInbox User',
       callbackUrl: '/dashboard',
     });
   };
@@ -40,13 +40,13 @@ export default function LoginPage() {
           </p>
         </div>
 
-        {/* Evaluator Recommendation Note */}
+        {/* Generalized Recommendation Note */}
         <div className="mb-6 p-3.5 rounded-2xl bg-blue-500/10 border border-blue-500/30 text-blue-300 text-xs flex items-start space-x-2.5 shadow-sm">
           <Info className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
           <div>
-            <span className="font-bold text-white block mb-0.5">Recommended for Evaluators / Recruiters:</span>
+            <span className="font-bold text-white block mb-0.5">Recommended for Instant Access:</span>
             <span>
-              Use <strong>"1-Click Dashboard Access"</strong> below for instant full-feature evaluation with zero login prompts. *(Google OAuth in unverified testing mode restricts non-test emails)*.
+              Use <strong>"1-Click Dashboard Access"</strong> below for immediate full-feature evaluation with zero login setup.
             </span>
           </div>
         </div>

@@ -2,15 +2,6 @@
 
 A production-grade email job scheduler service and live dashboard, built to emulate ReachInbox.ai's internal cold outreach engine. It schedules, rate-limits, and sends cold email campaigns at scale using **BullMQ delayed jobs backed by Redis (with ZERO cron jobs)**, PostgreSQL, Nodemailer (Ethereal SMTP), Elasticsearch, and Slack Incoming Webhooks.
 
----
-
-## 🎬 Live Interactive Demo Video
-
-The complete 5-minute interactive user flow recorded live inside Chrome (dashboard scheduling, delayed job execution, live BullMQ board, Ethereal preview links, and Elasticsearch search) is included in the repository as a video:
-
-[demo_video.mp4](demo_video.mp4)
-
-> 💡 *Click the `demo_video.mp4` link above or open `demo_video.mp4` to watch the full demo recording.*
 
 ---
 
